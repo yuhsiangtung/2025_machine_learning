@@ -15,10 +15,10 @@
 - **Accuracy metric**: the $W^{k,\infty}$ norm (i.e., the maximum error over $[-M,M]$ for the function **and** all derivatives up to order $k$).
 - **Guarantee**: For every $\varepsilon>0$ there exists a **single** shallow `tanh` network of width **$(s+1)/2$** such that
 
-  ```math
+  $$
   \max_{\substack{p\le s\\ p\ \text{odd}}}\ \max_{0\le m\le k}\ \sup_{x\in[-M,M]}
   \Big| \tfrac{d^m}{dx^m}x^p - \tfrac{d^m}{dx^m}\hat f_p(x) \Big| \ \le\ \varepsilon .
-  ```
+  $$
 
   Here, “single network” means **one shared hidden layer** (width $(s+1)/2$) reused for all $p$. Each $\hat f_p$ is obtained by changing only the **final linear head** (output weights). Equivalently, you may view the construction as **one multi-output network** $\Psi_{s,\varepsilon}:[-M,M]\to\mathbb{R}^{(s+1)/2}$ with
 
@@ -276,7 +276,7 @@ Steps: (i) obtain $\widehat f_{3,h}$ from Lemma 3.1; (ii) evaluate at $y\pm\alph
 ### 7) Summary
 
 - **Goal**: a single one‑hidden‑layer `tanh` network of width $ \tfrac{3(s+1)}{2} $ that approximates $y,\dots,y^s$ (including derivatives up to $k$).
-- **Technique**: odd via Lemma 3.1; even via identity (★) + recursion.
+- **Technique**: odd via Lemma 3.1; even via identity + recursion.
 - **Error**: define $E_p$; control odd with Lemma 3.1; control even by the recursive bound; choose $\alpha=1/s$ to get $\max_p E_p\le\varepsilon$.
 - **Width**: $(s+1)/2$ shared slopes × 3 shifts $\Rightarrow \frac{3(s+1)}{2}$.
 - **Weights**: explicit growth; increase as $\varepsilon\downarrow$ or $s\uparrow$, but remain controlled by the lemma.
