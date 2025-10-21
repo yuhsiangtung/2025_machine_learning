@@ -115,9 +115,7 @@ $$x_t = \sqrt{\alpha_t} x_{t-1} + \sqrt{1 - \alpha_t} \epsilon_{t-1}, \quad \tex
     a. 將當前的樣本 $x_t$ 和時間步 $t$ 輸入到網路中，得到對雜訊的預測值 $\epsilon_{\theta}(x_t, t)$。
     b. 利用這個預測的雜訊，執行一步去噪操作來估算前一時刻的樣本 $x_{t-1}$。一個常見的更新式如下：
 
-    $$
-    x_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{1-\alpha_t}{\sqrt{1-\bar{\alpha}\_t}} \epsilon\_{\theta}(x_t, t) \right) + \sigma_t z
-    $$
+    $$x_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{1-\alpha_t}{\sqrt{1-\bar{\alpha}\_t}} \epsilon\_{\theta}(x_t, t) \right) + \sigma_t z$$
 
     其中：
     * $\epsilon_{\theta}(x_t, t)$ 是訓練好的網路所預測的雜訊。
