@@ -38,22 +38,22 @@ $$
 
 #### 3. 透過分部積分法消除 $s_d(x)$ (Eliminating $s_d(x)$ via Integration by Parts)
 
-此步驟的關鍵是消除對 $s_d(x)$ 的依賴。專注於處理交叉項 $-\mathbb{E}_{p\_v}\mathbb{E}_{p\_d}[(v^T s_m)(v^T s_d)]$。
+此步驟的關鍵是消除對 $s_d(x)$ 的依賴。專注於處理交叉項 $-\mathbb{E}\_{p\_v}\mathbb{E}_{p\_d}[(v^T s_m)(v^T s_d)]$。
 
 1. 將期望寫成積分形式，並利用 $s_d(x) = \nabla_x \log p_d(x) = \frac{\nabla_x p_d(x)}{p_d(x)}$ 的關係：
     $$
-    -\mathbb{E}_{p\_v}\mathbb{E}_{p\_d}[(v^T s_m)(v^T s_d)] = -\mathbb{E}_{p\_v} \int p_d(x) (v^T s_m(x; \theta)) (v^T s_d(x)) dx
+    -\mathbb{E}\_{p\_v}\mathbb{E}_{p\_d}[(v^T s_m)(v^T s_d)] = -\mathbb{E}\_{p\_v} \int p_d(x) (v^T s_m(x; \theta)) (v^T s_d(x)) dx
     $$
     $$
-    = -\mathbb{E}_{p\_v} \int (v^T s_m(x; \theta)) (v^T \nabla_x p_d(x)) dx
+    = -\mathbb{E}\_{p\_v} \int (v^T s_m(x; \theta)) (v^T \nabla_x p_d(x)) dx
     $$
 2. 在滿足特定邊界條件（即 $\lim_{||x||\to\infty} s_m(x; \theta) p_d(x) = 0$）的假設下，可以對上式使用多變量分部積分法 (multivariate integration by parts)。這使得交叉項可以轉換為：
     $$
-    -\mathbb{E}_{p\_v} \int (v^T s_m) (v^T \nabla_x p_d(x)) dx = \mathbb{E}_{p\_v} \int p_d(x) v^T (\nabla_x s_m(x; \theta)) v dx
+    -\mathbb{E}\_{p\_v} \int (v^T s_m) (v^T \nabla_x p_d(x)) dx = \mathbb{E}\_{p\_v} \int p_d(x) v^T (\nabla_x s_m(x; \theta)) v dx
     $$
 3. 將結果寫回期望的形式：
     $$
-    \mathbb{E}_{p\_v} \mathbb{E}_{p\_d} [v^T \nabla_x s_m(x; \theta) v]
+    \mathbb{E}\_{p\_v} \mathbb{E}_{p\_d} [v^T \nabla_x s_m(x; \theta) v]
     $$
 
 #### 4. 最終形式 (Final Form)
