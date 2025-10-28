@@ -30,7 +30,7 @@ $$
 L(\theta; p_v) = \frac{1}{2}\mathbb{E}_{p_v}\mathbb{E}_{p_d}[(v^T s_m)^2] - \mathbb{E}_{p_v}\mathbb{E}_{p_d}[(v^T s_m)(v^T s_d)] + \frac{1}{2}\mathbb{E}_{p_v}\mathbb{E}_{p_d}[(v^T s_d)^2]
 $$
 
-由於最後一項 $\frac{1}{2}\mathbb{E}_{p\_v}\mathbb{E}_{p\_d}[(v^T s_d)^2]$ 與模型參數 $\theta$ 無關，因此在最佳化過程中可視為一個常數 $C$。於是，與最佳化相關的部分簡化為：
+由於最後一項 $\frac{1}{2}\mathbb{E}\_{p\_v}\mathbb{E}_{p\_d}[(v^T s_d)^2]$ 與模型參數 $\theta$ 無關，因此在最佳化過程中可視為一個常數 $C$。於是，與最佳化相關的部分簡化為：
 
 $$
 L(\theta; p_v) = \mathbb{E}_{p_v}\mathbb{E}_{p_d} \left[ \frac{1}{2}(v^T s_m(x; \theta))^2 - (v^T s_m(x; \theta))(v^T s_d(x)) \right] + C
