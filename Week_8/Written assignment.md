@@ -30,7 +30,7 @@ $$
 L(\theta; p_v) = \frac{1}{2}\mathbb{E}_{p_v}\mathbb{E}_{p_d}[(v^T s_m)^2] - \mathbb{E}_{p_v}\mathbb{E}_{p_d}[(v^T s_m)(v^T s_d)] + \frac{1}{2}\mathbb{E}_{p_v}\mathbb{E}_{p_d}[(v^T s_d)^2]
 $$
 
-由於最後一項 $\frac{1}{2}\mathbb{E}_{p_v}\mathbb{E}_{p_d}[(v^T s_d)^2]$ 與模型參數 $\theta$ 無關，因此在最佳化過程中可視為一個常數 $C$。於是，與最佳化相關的部分簡化為：
+由於最後一項 $\frac{1}{2}\mathbb{E}_{p\_v}\mathbb{E}_{p\_d}[(v^T s_d)^2]$ 與模型參數 $\theta$ 無關，因此在最佳化過程中可視為一個常數 $C$。於是，與最佳化相關的部分簡化為：
 
 $$
 L(\theta; p_v) = \mathbb{E}_{p_v}\mathbb{E}_{p_d} \left[ \frac{1}{2}(v^T s_m(x; \theta))^2 - (v^T s_m(x; \theta))(v^T s_d(x)) \right] + C
@@ -38,22 +38,22 @@ $$
 
 #### 3. 透過分部積分法消除 $s_d(x)$ (Eliminating $s_d(x)$ via Integration by Parts)
 
-此步驟的關鍵是消除對 $s_d(x)$ 的依賴。專注於處理交叉項 $-\mathbb{E}_{p_v}\mathbb{E}_{p_d}[(v^T s_m)(v^T s_d)]$。
+此步驟的關鍵是消除對 $s_d(x)$ 的依賴。專注於處理交叉項 $-\mathbb{E}_{p\_v}\mathbb{E}_{p\_d}[(v^T s_m)(v^T s_d)]$。
 
 1. 將期望寫成積分形式，並利用 $s_d(x) = \nabla_x \log p_d(x) = \frac{\nabla_x p_d(x)}{p_d(x)}$ 的關係：
     $$
-    -\mathbb{E}_{p_v}\mathbb{E}_{p_d}[(v^T s_m)(v^T s_d)] = -\mathbb{E}_{p_v} \int p_d(x) (v^T s_m(x; \theta)) (v^T s_d(x)) dx
+    -\mathbb{E}_{p\_v}\mathbb{E}_{p\_d}[(v^T s_m)(v^T s_d)] = -\mathbb{E}_{p\_v} \int p_d(x) (v^T s_m(x; \theta)) (v^T s_d(x)) dx
     $$
     $$
-    = -\mathbb{E}_{p_v} \int (v^T s_m(x; \theta)) (v^T \nabla_x p_d(x)) dx
+    = -\mathbb{E}_{p\_v} \int (v^T s_m(x; \theta)) (v^T \nabla_x p_d(x)) dx
     $$
 2. 在滿足特定邊界條件（即 $\lim_{||x||\to\infty} s_m(x; \theta) p_d(x) = 0$）的假設下，可以對上式使用多變量分部積分法 (multivariate integration by parts)。這使得交叉項可以轉換為：
     $$
-    -\mathbb{E}_{p_v} \int (v^T s_m) (v^T \nabla_x p_d(x)) dx = \mathbb{E}_{p_v} \int p_d(x) v^T (\nabla_x s_m(x; \theta)) v dx
+    -\mathbb{E}_{p\_v} \int (v^T s_m) (v^T \nabla_x p_d(x)) dx = \mathbb{E}_{p\_v} \int p_d(x) v^T (\nabla_x s_m(x; \theta)) v dx
     $$
 3. 將結果寫回期望的形式：
     $$
-    \mathbb{E}_{p_v} \mathbb{E}_{p_d} [v^T \nabla_x s_m(x; \theta) v]
+    \mathbb{E}_{p\_v} \mathbb{E}_{p\_d} [v^T \nabla_x s_m(x; \theta) v]
     $$
 
 #### 4. 最終形式 (Final Form)
@@ -77,12 +77,12 @@ $$
 
 因此，可以將表達式可以寫成：
 $$
-L_{SSM} = \mathbb{E}_{x} \mathbb{E}_{v} [ (v^T S(x; \theta))^2 + 2v^T (\nabla_x S(x; \theta)) v ]
+L_{SSM} = \mathbb{E}_{x} \mathbb{E}_{v} [ (v^T S(x; \theta))^2 + 2v^T (\nabla\_x S(x; \theta)) v ]
 $$
 
 恰好為上面推導出的 $J(\theta; p_v)$ 的兩倍：
 $$
-2 \times J(\theta; p_v) = 2 \times \mathbb{E}_{p_v}\mathbb{E}_{p_d} \left[ \frac{1}{2}(v^T s_m)^2 + v^T \nabla_x s_m v \right] = \mathbb{E}_{p_v}\mathbb{E}_{p_d} \left[ (v^T s_m)^2 + 2 v^T \nabla_x s_m v \right]
+2 \times J(\theta; p_v) = 2 \times \mathbb{E}_{p_v}\mathbb{E}_{p_d} \left[ \frac{1}{2}(v^T s_m)^2 + v^T \nabla\_x s_m v \right] = \mathbb{E}_{p\_v}\mathbb{E}_{p\_d} \left[ (v^T s_m)^2 + 2 v^T \nabla\_x s_m v \right]
 $$
 
 **結論**
